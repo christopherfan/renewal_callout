@@ -89,3 +89,18 @@ def create_item():
 
     items.append(item)
     return jsonify({'item': item}), 201
+
+
+
+@app.route('/renewal', methods=['GET', 'POST'])
+def renewal():
+    organization = request.args.get('org')
+    #print("organization is ", request.args)
+    something = request.args
+    #for stuff in something.keys():
+     #   print("Parameter=",stuff, " Value=", something[stuff])
+
+    # x = app.models.Renewal_Item()
+    # print (x[0])
+
+    return render_template('renewal.html', param=tasks)
