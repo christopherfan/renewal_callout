@@ -1,9 +1,24 @@
 #!flask/bin/python
 from flask import Flask, jsonify, abort, request, make_response, url_for
-from flask.ext.httpauth import HTTPBasicAuth
+from app import app
+
+
+#Original tutorial Code
+# from flask.ext.httpauth import HTTPBasicAuth
+from flask_httpauth import HTTPBasicAuth
 
 app = Flask(__name__, static_url_path = "")
 auth = HTTPBasicAuth()
+
+
+#############basic views to check Flask
+@app.route('/')
+@app.route('/index')
+def index():
+    return "Hello, World!"
+
+#############
+
 
 @auth.get_password
 def get_password(username):
@@ -102,6 +117,8 @@ def delete_task(task_id):
         abort(404)
     tasks.remove(task[0])
     return jsonify( { 'result': True } )
-    
-if __name__ == '__main__':
-    app.run(debug = True)
+
+
+#Disable the run main method     
+# if __name__ == '__main__':
+#     app.run(debug = True)
