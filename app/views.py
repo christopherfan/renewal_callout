@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, abort, make_response, request
+from flask import Flask, jsonify, abort, make_response, request,render_template
 
 from app import app
 
@@ -103,4 +103,4 @@ def renewal():
     # x = app.models.Renewal_Item()
     # print (x[0])
 
-    return render_template('renewal.html', param=tasks)
+    return render_template('renewal.html', param=items)

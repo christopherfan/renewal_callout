@@ -33,23 +33,37 @@
 	<div class = "container"> 
 	<div class="page-header">
         
-        <h1>Bootstrap grid examples</h1>
-        <p class="lead">Basic grid layouts to get you familiar with building within the Bootstrap grid system.</p>
-        <h3>Three equal columns</h3>
-        <p>Get three equal-width columns <strong>starting at desktops and scaling to large desktops</strong>. On mobile devices, tablets and below, the columns will automatically stack.</p>
+        <h1>Online Marketplace</h1>
+ <!--        <p class="lead">Basic grid layouts to get you familiar with building within the Bootstrap grid system.</p> -->
+        <h3>Would you like to renew?</h3>
+        <p>Echo of the POST body triggered by the renewal call out </p>
         <div class="row">
         	<div class= "col-md-6">
         		<table class="table table-striped">
 		            <thead>
 		              <tr>
-		                <th>#</th>
-		                <th>Key</th>
-		                <th>Value</th>
+		                <th>Total Quantity</th>
+		                <th>Days Remaining</th>
+		                <th>Expiration Date</th>		               
+		                <th>Organization</th>
+		                <th>Type</th>
+		                <th>ActivationID </th>
 		              </tr>
 		            </thead>
 		            <tbody>
-			              <div id="inser_rows">
+			              <div id="insert_rows">
+			              {% for renewal_item in param%}
 			              <tr>
+			                <td> {{renewal_item.TotalQuantity}} </td>
+			                <td> {{renewal_item.RemainingDays}}</td>
+			                <td> {{renewal_item.ExpirationDate}}</td>
+			                <td> {{renewal_item.SoldTo}}</td>
+			                <td> {{renewal_item.Type}}</td>
+			                <td> {{renewal_item.ActivationID}}</td>
+			              </tr>
+
+			              {% endfor %}
+<!-- 			              <tr>
 			                <td>1</td>
 			                <td>Mark</td>
 			                <td>Otto</td>
@@ -64,7 +78,7 @@
 			                <td>3</td>
 			                <td>Larry</td>
 			                <td>the Bird</td>
-			              </tr>
+			              </tr> -->
 			              </div>
 		            </tbody>
 		          </table>
@@ -82,7 +96,7 @@
 			var html_string = "<tr>";
 			var param_key, param_value;
 			var console_stuff = parameters
-			console.log("???????????",console_stuff);
+			//console.log("???????????",console_stuff);
 
 			for (key=0; key < Object.keys(parameters).length; key++){
 				
