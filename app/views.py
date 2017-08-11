@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, abort
+from flask import Flask, jsonify, abort, make_response, request
 
 from app import app
 
@@ -23,6 +23,69 @@ tasks = [
     }
 ]
 
-@app.route('/todo/api/v1.0/tasks', methods=['GET'])
-def get_tasks():
-    return jsonify({'tasks': tasks})
+
+items = [
+    {
+        'id':1,
+        'ActivationID': '4c96-7f71-3098-45ed-9ed1-30dc-aba1-d0a4',
+        'Type': 'Subscription',
+        'RemainingDays': 25,
+        'SoldTo': 'Bravo Stage Production',
+        'TotalQuantity': 5,
+        'ExpirationDate': 'Sep 1, 2017',
+        'Entitlement': '4c96-7f71-3098-45ed-9ed1-30dc-aba1-d0a4'
+        # return self.body
+    }
+]
+
+
+
+
+
+@app.route('/todo/api/v1.0/items', methods=['GET'])
+def get_items():
+    return jsonify({'items': items}) #replaced item
+
+
+
+@app.route('/todo/api/v1.0/items/<int:item_id>', methods=['GET'])
+def get_item(item_id):
+    item = [item for item in items if item['id'] == item_id]
+    if len(item) == 0:
+        abort(404)
+    return jsonify({'item': item[0]})
+
+@app.errorhandler(404)
+def not_found(error):
+    return make_response(jsonify({'error': 'Not found'}), 404)
+
+
+@app.route('/todo/api/v1.0/items', methods=['POST'])
+def create_item():
+    if not request.json or not 'ActivationID' in request.json:
+        abort(400)
+    
+    #Assign POST body to internal strcuture
+    item= {
+        'id': items[-1]['id'] + 1,
+        'ActivationID': request.json['ActivationID'],
+        'Type': request.json['Type'],
+        'RemainingDays': request.json['RemainingDays'],
+        'SoldTo': request.json['SoldTo'],
+        'TotalQuantity': request.json['TotalQuantity'],
+        'ExpirationDate': request.json['ExpirationDate'],
+        'Entitlement': request.json['Entitlement'],
+    }
+
+#Old Code
+    # item = {
+    #     'id': items[-1]['id'] + 1,
+    #     'title': request.json['title'],
+    #     'description': request.json.get('description', ""),
+    #     'done': False
+    # }
+
+
+
+    items.append(item)
+    return jsonify({'item': item}), 201
