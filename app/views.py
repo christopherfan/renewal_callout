@@ -27,14 +27,14 @@ tasks = [
 items = [
     {
         'id':1,
-        'ActivationID': '4c96-7f71-3098-45ed-9ed1-30dc-aba1-d0a4',
+        'ActivationID': '5a43-7f71-3098-45ed-9ed1-30dc-aba1-d0a4',
         'Type': 'Subscription',
-        'RemainingDays': 25,
-        'Product': 'PhotoPrint',
+        'RemainingDays': 90,
+        'Product': 'Spotlight',
         'SoldTo': 'Bravo Stage Production',
-        'TotalQuantity': 5,
-        'ExpirationDate': 'Sep 1, 2017',
-        'Entitlement': '4c96-7f71-3098-45ed-9ed1-30dc-aba1-d0a4'
+        'TotalQuantity': 13,
+        'ExpirationDate': '2017-10-10',
+        'Entitlement': '5a43-7f71-3098-45ed-9ed1-30dc-aba1-d0a4'
         # return self.body
     }
 ]
